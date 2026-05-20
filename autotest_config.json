@@ -1,0 +1,29 @@
+{
+  "repoUrl": "https://github.com/mend-detection-qa/poetry-mixed-version-formats",
+  "tests": [
+    {
+      "check_name": "direct_dependencies_count",
+      "check_type": "FLEXIBLE",
+      "expected_value": 4,
+      "description": "Direct deps: requests (semver), pdfminer.six (calver), Pillow (two-segment), httpx (semver)"
+    },
+    {
+      "check_name": "direct_dependencies_names_list",
+      "check_type": "STRICT",
+      "expected_value": ["requests", "pdfminer-six", "pillow", "httpx"],
+      "description": "All 4 direct deps must resolve regardless of version format — versionPatternWhl stress test"
+    },
+    {
+      "check_name": "check_sha1_not_empty",
+      "check_type": "STRICT",
+      "expected_value": true,
+      "description": "sha1 must be populated for ALL packages — any partial regex fix would show as empty sha1 for one format"
+    },
+    {
+      "check_name": "total_dependencies_count",
+      "check_type": "FLEXIBLE",
+      "expected_value": 11,
+      "description": "4 direct + transitives: anyio, certifi, chardet, cryptography, httpcore, idna, urllib3"
+    }
+  ]
+}
